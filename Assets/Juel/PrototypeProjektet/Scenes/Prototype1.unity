@@ -5964,6 +5964,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: TrashCollector
       objectReference: {fileID: 0}
+    - target: {fileID: 391810166331684395, guid: 25f7f0bfedf55d74bbc7df6f4f35f7fe, type: 3}
+      propertyPath: moveSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 391810166331684395, guid: 25f7f0bfedf55d74bbc7df6f4f35f7fe, type: 3}
+      propertyPath: sensitivity
+      value: 500
+      objectReference: {fileID: 0}
     - target: {fileID: 6701558492066273836, guid: 25f7f0bfedf55d74bbc7df6f4f35f7fe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.25
