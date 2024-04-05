@@ -11,6 +11,7 @@ public class SJS_PlayerController : MonoBehaviour
     //references
     public Transform cam;
     //private Transform player;
+    public float distanceToGround = 1;
     Rigidbody Rb;
     //
     
@@ -33,8 +34,11 @@ public class SJS_PlayerController : MonoBehaviour
         Vector3 movement = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")).normalized;
        
         transform.position += movement*Time.deltaTime*speed;
+        Ray ray = new Ray(transform.position, transform.up * -1);
+        grounded = Physics.Raycast(ray,distanceToGround, LayerMask.GetMask("Terrain"));
 
-        if (Input.GetButtonDown("Jump"))
+
+        if (Input.GetButtonDown("Jump") &&grounded)
         {
             Rb.AddForce(Vector3.up*jumpPower, ForceMode.VelocityChange);
         }
