@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1097712858557053522}
   m_Layer: 0
-  m_Name: Thin T
+  m_Name: T Thin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

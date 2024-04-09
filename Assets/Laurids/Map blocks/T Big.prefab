@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2754265559770914727}
   m_Layer: 0
-  m_Name: Big T
+  m_Name: T Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
