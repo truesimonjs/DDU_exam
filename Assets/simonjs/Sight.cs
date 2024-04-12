@@ -1,9 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Sight : MonoBehaviour
 {
@@ -19,16 +15,16 @@ public class Sight : MonoBehaviour
 
     public List<Transform> activate()
     {
-       
+
         List<Transform> detected = GetDetectable(Physics.OverlapSphere(transform.position, range));
-        for (int i = detected.Count-1; i >= 0; i--)
+        for (int i = detected.Count - 1; i >= 0; i--)
         {
-           
+
             Transform target = detected[i];
-            
+
             if (!targetInFOV(target, FOV) || Obstructed(target))
             {
-               
+
                 detected.RemoveAt(i);
             }
         }
@@ -37,7 +33,7 @@ public class Sight : MonoBehaviour
 
     public List<Transform> GetDetectable(Collider[] targets)
     {
-        List<Transform> list = new List<Transform>();   
+        List<Transform> list = new List<Transform>();
         foreach (Collider target in targets)
         {
             if (target.tag == "visible") list.Add(target.transform);

@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PickUpScript : MonoBehaviour
@@ -23,17 +21,17 @@ public class PickUpScript : MonoBehaviour
 
         if (collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerController>().CanPickUpTrash)
         {
-                PlayerAmountOfTrashCollected = collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag;
-                if (collision.gameObject.GetComponent<PlayerController>().HasTrash == false) { Activate(); }
-                collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag += 1;
+            PlayerAmountOfTrashCollected = collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag;
+            if (collision.gameObject.GetComponent<PlayerController>().HasTrash == false) { Activate(); }
+            collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag += 1;
 
-                if (PlayerAmountOfTrashCollected < collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag)
-                {
-                    
-                    Destroy(this.gameObject);
-                }
-                else
-                    Debug.Log("PickUP - Failed");
+            if (PlayerAmountOfTrashCollected < collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag)
+            {
+
+                Destroy(this.gameObject);
             }
-    }   
+            else
+                Debug.Log("PickUP - Failed");
+        }
+    }
 }

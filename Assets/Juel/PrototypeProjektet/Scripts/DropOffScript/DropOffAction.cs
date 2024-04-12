@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ public class DropOffAction : MonoBehaviour
     [SerializeField] private List<Material> materials;
 
     public bool ActiveDropOffLocation;
-    
+
     private void OnCollisionEnter(Collision collision)
     {
         if (ActiveDropOffLocation && collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerController>().HasTrash)
@@ -22,7 +21,7 @@ public class DropOffAction : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        if(!ActiveDropOffLocation && collision.gameObject.CompareTag("Player"))
+        if (!ActiveDropOffLocation && collision.gameObject.CompareTag("Player"))
         {
             this.gameObject.GetComponent<Renderer>().material = materials[2];
         }
