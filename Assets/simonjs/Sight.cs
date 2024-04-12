@@ -5,18 +5,14 @@ public class Sight : MonoBehaviour
 {
     public float range = 5;
     public float FOV = 30;
-    //debug 
-    //public List<Transform> debugList;
+    public float awareness = 1;
     public bool showGizmos = true;
-    private void Update()
-    {
-        //debugList = activate();
-    }
-
+  
     public List<Transform> activate()
     {
 
         List<Transform> detected = GetDetectable(Physics.OverlapSphere(transform.position, range));
+       
         for (int i = detected.Count - 1; i >= 0; i--)
         {
 
@@ -36,7 +32,8 @@ public class Sight : MonoBehaviour
         List<Transform> list = new List<Transform>();
         foreach (Collider target in targets)
         {
-            if (target.tag == "visible") list.Add(target.transform);
+            //if (target.tag == "visible")
+            list.Add(target.transform);
         }
         return list;
     }

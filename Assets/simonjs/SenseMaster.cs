@@ -13,7 +13,7 @@ public class SenseMaster : MonoBehaviour
         if (detected.Count > 0)
         {
             if (senseTarget == null) senseTarget = detected[0];
-            
+
             if (senseTarget == detected[0]) glanceMeter += 0.1f * Time.deltaTime;
 
             return;
@@ -22,6 +22,6 @@ public class SenseMaster : MonoBehaviour
         glanceMeter = 0;
 
 
-        
+
     }
 }
