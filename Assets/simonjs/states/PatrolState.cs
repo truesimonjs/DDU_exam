@@ -6,8 +6,8 @@ public class PatrolState : State
 {
     public float glanceDecay = 1;
     public Transform waypointParent;
+    public GameObject senses;
     //ref
-    //public Sight sight;
     public Sight[] sights;
     private NavMeshAgent agent;
     private Transform player;
@@ -20,6 +20,7 @@ public class PatrolState : State
         owner = GetComponent<EnemyScript>();
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        sights = senses.GetComponents<Sight>();
     }
     public override void StateStart(Transform target = null)
     {

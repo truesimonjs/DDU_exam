@@ -7,6 +7,7 @@ public class EnemyScript : MonoBehaviour
     //
     public PatrolState patrol;
     public InvestigateState investi;
+    public ChaseState chase;
     public StateEnum state;
 
 
@@ -26,7 +27,7 @@ public class EnemyScript : MonoBehaviour
                 investi.StateUpdate();
                 break;
             case StateEnum.chasing:
-              
+                chase.StateUpdate();
                 break;
             default:
                 break;
@@ -52,7 +53,8 @@ public class EnemyScript : MonoBehaviour
                 }
                 break;
             case StateEnum.chasing:
-                Debug.Log("startChase!");
+                state = StateEnum.chasing;
+                chase.StateStart(target);
                 break;
             default:
                 break;

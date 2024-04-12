@@ -6,7 +6,7 @@ public class Sight : MonoBehaviour
     public float range = 5;
     public float FOV = 30;
     public float awareness = 1;
-    public bool showGizmos = true;
+    public bool showGizmos = false;
   
     public List<Transform> activate()
     {

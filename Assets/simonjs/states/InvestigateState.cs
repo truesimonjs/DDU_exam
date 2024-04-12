@@ -8,21 +8,24 @@ public class InvestigateState : State
     private NavMeshAgent agent;
     private EnemyScript owner;
     private Transform player;
+    private Sight[] sights;
     //inspector values
-    public Sight[] sights;
-    public float investigationTime;
-    public float TimePerSpot;
-    private float glanceDecay;
+    
+    [SerializeField]private GameObject senses;
+    [SerializeField] private float investigationTime;
+    [SerializeField] private float TimePerSpot;
+    [SerializeField] private float glanceDecay;
     //used vars
     private Vector3 point;
-    public float nextMovement;
+    private float nextMovement;
     private float timeSpent;
-    public float glanceMeter;
+    private float glanceMeter;
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         agent = GetComponent<NavMeshAgent>();
         owner = GetComponent<EnemyScript>();
+        sights = senses.GetComponents<Sight>();
     }
     public override void StateStart(Transform target = null)
     {
@@ -41,8 +44,8 @@ public class InvestigateState : State
             if (timeSpent >= investigationTime) owner.switchState(EnemyScript.StateEnum.patrolling, null, true);
             nextMovement = Time.time + TimePerSpot;
             timeSpent += TimePerSpot;
-            agent.SetDestination(point + new Vector3(Random.Range(-5, 5), 0, Random.Range(-5, 5)));
-
+            agent.SetDestination(point + new Vector3(Random.Range(-3, 3), 0, Random.Range(-3, 3)));
+            
         }
 
     }
