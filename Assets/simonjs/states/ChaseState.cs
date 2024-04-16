@@ -9,8 +9,7 @@ public class ChaseState : State
     private NavMeshAgent agent;
     private EnemyScript owner;
     private Transform player;
-    //used
-    bool targetWasVisible = true;
+    
     private void Awake()
     {
         owner = GetComponent<EnemyScript>();
@@ -19,7 +18,7 @@ public class ChaseState : State
     }
     public override void StateStart(Transform target = null)
     {
-        targetWasVisible = true;
+        agent.speed = owner.runSpeed;
 
     }
 
@@ -29,7 +28,7 @@ public class ChaseState : State
         Ray ray = new Ray(this.transform.position, direction);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
-        Debug.Log(hit.collider.gameObject.transform);
+        
         if (hit.collider.gameObject.transform == player)
         {
         agent.SetDestination(player.position);

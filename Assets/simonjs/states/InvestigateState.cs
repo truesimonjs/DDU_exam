@@ -10,11 +10,10 @@ public class InvestigateState : State
     private Transform player;
     private Sight[] sights;
     //inspector values
-    
-    [SerializeField]private GameObject senses;
+    [SerializeField] private float glanceDecay;
+    [SerializeField] private GameObject senses;
     [SerializeField] private float investigationTime;
     [SerializeField] private float TimePerSpot;
-    [SerializeField] private float glanceDecay;
     //used vars
     private Vector3 point;
     private float nextMovement;
@@ -30,9 +29,9 @@ public class InvestigateState : State
     public override void StateStart(Transform target = null)
     {
         point = target == null ? transform.position : target.position;
+        agent.speed = owner.walkSpeed;
+
         timeSpent = 0;
-        
-        timeSpent = TimePerSpot;
         nextMovement = 0;
     }
     public override void StateUpdate()
@@ -61,8 +60,9 @@ public class InvestigateState : State
         }
 
         glanceMeter += glanceChange;
-        if (glanceChange == 0) glanceMeter = -glanceDecay;
+        if (glanceChange == 0) glanceMeter -= glanceDecay*Time.deltaTime;
         if (glanceMeter < 0) glanceMeter = 0;
+        owner.healthBar.BarUpdate(glanceMeter, Color.red);
         if (glanceMeter >= 1)
         {
             owner.switchState(EnemyScript.StateEnum.chasing, player);

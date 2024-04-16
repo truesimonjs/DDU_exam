@@ -5,16 +5,16 @@ using UnityEngine.AI;
 public class PatrolState : State
 {
     public float glanceDecay = 1;
-    public Transform waypointParent;
     public GameObject senses;
+    public Transform waypointParent;
     //ref
-    public Sight[] sights;
+    private Sight[] sights;
     private NavMeshAgent agent;
     private Transform player;
     private EnemyScript owner;
     //used vars
-    public int currentWaypoint = 0;
-    public float glanceMeter;
+    private int currentWaypoint = 0;
+    private float glanceMeter;
     private void Awake()
     {
         owner = GetComponent<EnemyScript>();
@@ -24,13 +24,12 @@ public class PatrolState : State
     }
     public override void StateStart(Transform target = null)
     {
-
-
         if (target != null)
         {
             waypointParent = target;
             currentWaypoint = 0;
         }
+        agent.speed = owner.walkSpeed;
         agent.SetDestination(waypointParent.GetChild(currentWaypoint).position);
     }
 
@@ -58,8 +57,9 @@ public class PatrolState : State
         }
 
         glanceMeter += glanceChange;
-        if (glanceChange == 0) glanceMeter = -glanceDecay;
+        if (glanceChange == 0) glanceMeter -= glanceDecay*Time.deltaTime;
         if (glanceMeter < 0) glanceMeter = 0;
+        owner.healthBar.BarUpdate(glanceMeter, Color.yellow);
         if (glanceMeter >= 1)
         {
             owner.switchState(EnemyScript.StateEnum.investigating, player);

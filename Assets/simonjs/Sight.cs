@@ -7,6 +7,8 @@ public class Sight : MonoBehaviour
     public float FOV = 30;
     public float awareness = 1;
     public bool showGizmos = false;
+    //debyg
+    public List<Transform> Targets_debug;
   
     public List<Transform> activate()
     {
@@ -24,6 +26,7 @@ public class Sight : MonoBehaviour
                 detected.RemoveAt(i);
             }
         }
+        Targets_debug = detected;
         return detected;
     }
 
@@ -32,7 +35,7 @@ public class Sight : MonoBehaviour
         List<Transform> list = new List<Transform>();
         foreach (Collider target in targets)
         {
-            //if (target.tag == "visible")
+            if (target.tag == "Player")
             list.Add(target.transform);
         }
         return list;
@@ -63,6 +66,11 @@ public class Sight : MonoBehaviour
             Gizmos.DrawRay(this.transform.position, right * range);
             Vector3 left = Quaternion.Euler(0, -FOV, 0) * transform.forward;
             Gizmos.DrawRay(this.transform.position, left * range);
+            if (Targets_debug.Count > 0)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawRay(this.transform.position, Targets_debug[0].transform.position - transform.position);
+            }
         }
 
     }

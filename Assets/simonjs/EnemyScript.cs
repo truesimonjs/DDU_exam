@@ -1,20 +1,20 @@
 using UnityEngine;
-
 public class EnemyScript : MonoBehaviour
 {
     //ref
- 
-    //
+    
+   [HideInInspector] public EnemyHealthbar healthBar;
     public PatrolState patrol;
     public InvestigateState investi;
     public ChaseState chase;
     public StateEnum state;
-
-
+    public float walkSpeed = 5;
+    public float runSpeed = 5;
     private void Start()
     {
-
+        healthBar = GetComponentInChildren<EnemyHealthbar>();
         switchState(StateEnum.patrolling, null, true);
+      
     }
     private void Update()
     {
@@ -22,6 +22,7 @@ public class EnemyScript : MonoBehaviour
         {
             case StateEnum.patrolling:
                 patrol.StateUpdate();
+                
                 break;
             case StateEnum.investigating:
                 investi.StateUpdate();
