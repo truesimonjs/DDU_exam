@@ -16,7 +16,7 @@ public class ChaseScript : MonoBehaviour
     private void Update()
     {
         lookAtPos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
-        transform.LookAt(lookAtPos);
+        
 
         agent.SetDestination(target.transform.position);
 
