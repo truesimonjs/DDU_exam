@@ -8,7 +8,7 @@ public class EnemyScript : MonoBehaviour
     public InvestigateState investi;
     public ChaseState chase;
     public StateEnum state;
-    public float walkSpeed = 5;
+    public float walkSpeed = 2.5f;
     public float runSpeed = 5;
     private void Start()
     {
