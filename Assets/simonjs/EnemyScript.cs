@@ -14,7 +14,7 @@ public class EnemyScript : MonoBehaviour
     {
         healthBar = GetComponentInChildren<EnemyHealthbar>();
         switchState(StateEnum.patrolling, null, true);
-      
+        
     }
     private void Update()
     {
@@ -44,6 +44,7 @@ public class EnemyScript : MonoBehaviour
                 {
                     state = StateEnum.patrolling;
                     patrol.StateStart();
+                  
                 }
                 break;
             case StateEnum.investigating:

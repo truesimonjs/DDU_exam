@@ -47,18 +47,8 @@ public class PatrolState : State
     }
     public void glance()
     {
-        float glanceChange = 0;
-        foreach (Sight sight in sights)
-        {
-        List<Transform> detected = sight.activate();
-        float Seestarget =  detected.Count > 0 && player == detected[0] ? 1 : 0;
-        glanceChange += sight.awareness * Seestarget * Time.deltaTime;
-
-        }
-
-        glanceMeter += glanceChange;
-        if (glanceChange == 0) glanceMeter -= glanceDecay*Time.deltaTime;
-        if (glanceMeter < 0) glanceMeter = 0;
+        
+        Glance.glance(ref glanceMeter, ref glanceDecay, sights);
         owner.healthBar.BarUpdate(glanceMeter, Color.yellow);
         if (glanceMeter >= 1)
         {
