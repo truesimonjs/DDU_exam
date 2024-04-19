@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
@@ -10,7 +8,7 @@ public class ChaseScript : MonoBehaviour
     public NavMeshAgent agent;
     [SerializeField] private Vector3 lookAtPos;
 
-    
+
 
     // Update is called once per frame
     private void Update()
@@ -24,7 +22,7 @@ public class ChaseScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

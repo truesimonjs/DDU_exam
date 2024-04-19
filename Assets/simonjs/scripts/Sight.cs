@@ -1,46 +1,42 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Sight : MonoBehaviour
 {
     public float range = 5;
     public float FOV = 30;
-    //debug 
-    //public List<Transform> debugList;
-    public bool showGizmos = true;
-    private void Update()
-    {
-        //debugList = activate();
-    }
-
+    public float awareness = 1;
+    public bool showGizmos = false;
+    //debyg
+    public List<Transform> Targets_debug;
+  
     public List<Transform> activate()
     {
-       
+
         List<Transform> detected = GetDetectable(Physics.OverlapSphere(transform.position, range));
-        for (int i = detected.Count-1; i >= 0; i--)
+       
+        for (int i = detected.Count - 1; i >= 0; i--)
         {
-           
+
             Transform target = detected[i];
-            
+
             if (!targetInFOV(target, FOV) || Obstructed(target))
             {
-               
+
                 detected.RemoveAt(i);
             }
         }
+        Targets_debug = detected;
         return detected;
     }
 
     public List<Transform> GetDetectable(Collider[] targets)
     {
-        List<Transform> list = new List<Transform>();   
+        List<Transform> list = new List<Transform>();
         foreach (Collider target in targets)
         {
-            if (target.tag == "visible") list.Add(target.transform);
+            if (target.tag == "Player")
+            list.Add(target.transform);
         }
         return list;
     }
@@ -70,6 +66,11 @@ public class Sight : MonoBehaviour
             Gizmos.DrawRay(this.transform.position, right * range);
             Vector3 left = Quaternion.Euler(0, -FOV, 0) * transform.forward;
             Gizmos.DrawRay(this.transform.position, left * range);
+            if (Targets_debug.Count > 0)
+            {
+                Gizmos.color = Color.blue;
+                Gizmos.DrawRay(this.transform.position, Targets_debug[0].transform.position - transform.position);
+            }
         }
 
     }

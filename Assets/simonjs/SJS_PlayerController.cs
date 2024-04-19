@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SJS_PlayerController : MonoBehaviour
@@ -14,7 +12,7 @@ public class SJS_PlayerController : MonoBehaviour
     public float distanceToGround = 1;
     Rigidbody Rb;
     //
-    
+
     private bool grounded;
     float camXRotation = 0;
     private void Start()
@@ -32,15 +30,15 @@ public class SJS_PlayerController : MonoBehaviour
         cam.localRotation = Quaternion.Euler(camXRotation, cam.localEulerAngles.y, cam.localEulerAngles.z);
         //move wasd
         Vector3 movement = (transform.forward * Input.GetAxis("Vertical") + transform.right * Input.GetAxis("Horizontal")).normalized;
-       
-        transform.position += movement*Time.deltaTime*speed;
+
+        transform.position += movement * Time.deltaTime * speed;
         Ray ray = new Ray(transform.position, transform.up * -1);
-        grounded = Physics.Raycast(ray,distanceToGround, LayerMask.GetMask("Terrain"));
+        grounded = Physics.Raycast(ray, distanceToGround, LayerMask.GetMask("Terrain"));
 
 
-        if (Input.GetButtonDown("Jump") &&grounded)
+        if (Input.GetButtonDown("Jump") && grounded)
         {
-            Rb.AddForce(Vector3.up*jumpPower, ForceMode.VelocityChange);
+            Rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
         }
     }
 }
