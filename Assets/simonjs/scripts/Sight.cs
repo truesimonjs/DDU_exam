@@ -7,7 +7,7 @@ public class Sight : MonoBehaviour
     public float FOV = 30;
     public float awareness = 1;
     public bool showGizmos = false;
-    //debyg
+    //debug
     public List<Transform> Targets_debug;
   
     public List<Transform> activate()
