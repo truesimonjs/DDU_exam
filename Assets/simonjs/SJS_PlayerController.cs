@@ -1,8 +1,11 @@
 using UnityEngine;
+using System.Collections.Generic;
 
-public class SJS_PlayerController : MonoBehaviour
+public class SJS_PlayerController : MonoBehaviour,IPickTrash
 {
-    //stats
+    public List<TrashType> backPack;
+    public int trashLimit;
+    //movement stats
     public float jumpPower;
     public float speed;
     public float mouseSens = 5;
@@ -40,5 +43,16 @@ public class SJS_PlayerController : MonoBehaviour
         {
             Rb.AddForce(Vector3.up * jumpPower, ForceMode.VelocityChange);
         }
+    }
+
+    public bool addTrash(TrashType trash)
+    {
+        if (backPack.Count < trashLimit)
+        {
+            backPack.Add(trash);
+            GameManager.instance.backPackChange(trash,true);
+            return true;
+        }
+        return false;
     }
 }
