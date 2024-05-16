@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - visible
+  - Navigator
   layers:
   - Default
   - TransparentFX

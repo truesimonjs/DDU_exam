@@ -1,14 +1,80 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class ManagementScript : MonoBehaviour
 {
+
+    public static ManagementScript instance;
+    public List<GameObject> trashPrefabList;
+    public List<GameObject> trashSpawnPosList;
     [SerializeField] private GameObject player;
-
-    [SerializeField] private List<GameObject> DropOffList;
-    [SerializeField] private List<Material> colors;
+    public GameObject chosenOne;
 
 
+    public List<GameObject> DropOffList;
+    public List<GameObject> trashList;
+    public List<Material> colors;
+
+
+    [SerializeField] private float spawnDelayTime;
+    [SerializeField] private bool simRunning;
+
+    private void Awake()
+    {
+        instance = this;
+    }
+
+    //Color rColor;
+    //public Material rMaterial;
+
+    private void Start()
+    {
+        simRunning = true;
+        StartCoroutine(spawnTrash());
+    }
+
+    IEnumerator spawnTrash()
+    {
+        while (simRunning)
+        {
+            spawnTrashAction();
+            yield return new WaitForSeconds(spawnDelayTime);
+        }   
+    }
+
+    void spawnTrashAction()
+    {
+        GameObject newGO = Instantiate(trashPrefabList[0], trashSpawnPosList[0].transform.position, Quaternion.identity);
+        //rMaterial = newGO.GetComponent<Renderer>().material;
+        //    for (int i = 0; i < 5; i++) 
+        //    { 
+        //        if (i == 0) 
+        //        { 
+        //            rColor.r = ((float)Random.Range(0, 255)) / 255; 
+        //        }
+        //        else if(i == 1) 
+        //        { 
+        //            rColor.g = ((float)Random.Range(0, 255))/255; 
+        //        } 
+        //        else if (i == 2) 
+        //        { 
+        //            rColor.b = ((float)Random.Range(0, 255))/255; 
+        //        }
+        //        else if(i == 3)
+        //        {
+        //            rMaterial.SetFloat("Metallic", ((float)Random.Range(0, 255)) / 255);
+        //        }
+        //        else if (i == 4)
+        //        {
+        //            rMaterial.SetFloat("Smoothness", ((float)Random.Range(0, 255)) / 255);
+        //        }
+        //    }
+        //    rColor.a = 1;
+        //    rMaterial.color = rColor;
+        trashList.Add(newGO);
+    }
 
     // Update is called once per frame
     void Update()

@@ -50,6 +50,11 @@ public class PlayerController: MonoBehaviour
 
         CanPickUpTrash = BagSize > numOfTrashInBag;
 
+        if(HasTrash == false)
+        {
+            ManagementScript.instance.chosenOne = null;
+        }
+
 
         //// Player movement
         //float horizontalInput = Input.GetAxis("Horizontal");

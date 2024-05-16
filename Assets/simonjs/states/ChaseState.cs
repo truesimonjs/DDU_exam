@@ -28,12 +28,13 @@ public class ChaseState : State
         Ray ray = new Ray(this.transform.position, direction);
         RaycastHit hit;
         Physics.Raycast(ray, out hit);
-        
-        if (hit.collider.gameObject.transform == player)
+       
+        if (hit.collider!=null&&hit.collider.gameObject.transform == player)
         {
-        agent.SetDestination(player.position);
-        if (Vector3.Distance(transform.position, player.position) < 2) Debug.Log("player has been killed");
-
+            
+            agent.SetDestination(player.position);
+         if (Vector3.Distance(transform.position, player.position) < 2) Debug.Log("player has been killed");
+           
         } 
         else if (Vector3.Distance(transform.position,agent.destination)<agent.stoppingDistance)
         {

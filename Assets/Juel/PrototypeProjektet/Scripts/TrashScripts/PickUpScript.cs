@@ -4,16 +4,16 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     private int PlayerAmountOfTrashCollected;
-    [SerializeField] private GameObject manager;
-
+  
     public List<Material> colorList;
-    public List<GameObject> DropOff;
+    
 
+    
     private void Activate()
     {
-        int i = Random.Range(0, DropOff.Count);
-        DropOff[i].GetComponent<DropOffAction>().ActiveDropOffLocation = true;
-        DropOff[i].GetComponent<Renderer>().material = colorList[1];
+        int i = Random.Range(0, ManagementScript.instance.DropOffList.Count);
+        ManagementScript.instance.chosenOne = ManagementScript.instance.DropOffList[i];
+        ManagementScript.instance.DropOffList[i].GetComponent<Renderer>().material = ManagementScript.instance.colors[1];
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -27,7 +27,7 @@ public class PickUpScript : MonoBehaviour
 
             if (PlayerAmountOfTrashCollected < collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag)
             {
-
+                ManagementScript.instance.trashList.Remove(this.gameObject);
                 Destroy(this.gameObject);
             }
             else
