@@ -50,6 +50,7 @@ public class SJS_PlayerController : MonoBehaviour,IPickTrash
         if (backPack.Count < trashLimit)
         {
             backPack.Add(trash);
+            GameManager.instance.backPackChange(trash,true);
             return true;
         }
         return false;

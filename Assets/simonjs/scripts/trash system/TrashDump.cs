@@ -5,6 +5,13 @@ using UnityEngine;
 public class TrashDump : MonoBehaviour
 {
     public TrashType dumpType = TrashType.Plastic;
+    public static List<Transform> activeDumps = new List<Transform>();
+    //debug
+    public List<Transform> debugdumps;
+    private void Update()
+    {
+        debugdumps = activeDumps;
+    }
     private void OnTriggerEnter(Collider other)
     {
         
@@ -18,9 +25,21 @@ public class TrashDump : MonoBehaviour
                 {
                     GameManager.instance.score += 1;
                     player.backPack.RemoveAt(i);
+                    GameManager.instance.backPackChange(dumpType, false);
                 }
             } 
         }
         
+    }
+    public void BecomeActive(bool active)
+    {
+        GetComponent<MeshRenderer>().material.color = active ? Color.green : Color.red;
+        if (active)
+        {
+            activeDumps.Add(transform);
+        } else
+        {
+            activeDumps.Remove(transform);
+        }
     }
 }
