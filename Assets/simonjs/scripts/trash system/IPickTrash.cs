@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IPickTrash 
 {
-    public bool addTrash(TrashType trash);
+    public bool AddTrash(TrashType trash);
 }

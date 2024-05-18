@@ -9,7 +9,8 @@ public class TrashScript_SJS : MonoBehaviour
     {
         IPickTrash target = other.gameObject.GetComponent<IPickTrash>();
         if (target == null) return;
-        if (target.addTrash(myTrash))
+        Debug.Log(other.gameObject.name);
+        if (target.AddTrash(myTrash))
         {
             Destroy(gameObject);
         }

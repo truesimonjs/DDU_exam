@@ -1,20 +1,39 @@
 using UnityEngine;
-public class EnemyScript : MonoBehaviour
+public class EnemyScript : MonoBehaviour, IPickTrash
 {
     //ref
     
    [HideInInspector] public EnemyHealthbar healthBar;
-    public PatrolState patrol;
-    public InvestigateState investi;
-    public ChaseState chase;
-    public StateEnum state;
+    private PatrolState patrol;
+    private InvestigateState investi;
+    private ChaseState chase;
+    private StateEnum state= StateEnum.inactive;
+    //stats
     public float walkSpeed = 2.5f;
     public float runSpeed = 5;
+    public int trashNeeded = 5;
+    public int currentTrash = 0;
+    private void Awake()
+    {
+        patrol = GetComponent<PatrolState>();
+        investi = GetComponent<InvestigateState>();
+        chase = GetComponent<ChaseState>();
+    }
     private void Start()
     {
         healthBar = GetComponentInChildren<EnemyHealthbar>();
         switchState(StateEnum.patrolling, null, true);
         
+    }
+    public bool AddTrash(TrashType trash)
+    {
+        currentTrash += 1;
+        if (currentTrash >= trashNeeded)
+        {
+            GameManager.instance.spawnMonster(transform.position);
+            currentTrash -= trashNeeded;
+        }
+        return true;
     }
     private void Update()
     {
@@ -43,7 +62,7 @@ public class EnemyScript : MonoBehaviour
                 if (priority)
                 {
                     state = StateEnum.patrolling;
-                    patrol.StateStart();
+                    patrol.StateStart(target);
                   
                 }
                 break;
@@ -65,7 +84,7 @@ public class EnemyScript : MonoBehaviour
  
     public enum StateEnum
     {
-        patrolling, investigating, chasing
+        patrolling, investigating, chasing,inactive
     }
 
 }

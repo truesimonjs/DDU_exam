@@ -45,7 +45,7 @@ public class SJS_PlayerController : MonoBehaviour,IPickTrash
         }
     }
 
-    public bool addTrash(TrashType trash)
+    public bool AddTrash(TrashType trash)
     {
         if (backPack.Count < trashLimit)
         {
