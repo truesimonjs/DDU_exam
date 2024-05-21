@@ -46,7 +46,11 @@ public class ManagementScript : MonoBehaviour
 
     void spawnTrashAction()
     {
-        GameObject newGO = Instantiate(trashPrefabList[0], trashSpawnPosList[0].transform.position, Quaternion.identity);
+        foreach (GameObject obj in trashSpawnPosList)
+        {
+            GameObject newGO = Instantiate(trashPrefabList[Random.Range(0, trashPrefabList.Count)], trashSpawnPosList[0].transform.position, Quaternion.identity);
+        }
+            
         //rMaterial = newGO.GetComponent<Renderer>().material;
         //    for (int i = 0; i < 5; i++) 
         //    { 
@@ -73,18 +77,17 @@ public class ManagementScript : MonoBehaviour
         //    }
         //    rColor.a = 1;
         //    rMaterial.color = rColor;
-        trashList.Add(newGO);
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (player.GetComponent<PlayerController>().numOfTrashInBag <= 0)
-        {
-            for (int i = 0; i < DropOffList.Count; i++)
-            {
-                DropOffList[i].GetComponent<Renderer>().material = colors[0];
-            }
-        }
-    }
+    //void Update()
+    //{
+    //    if (player.GetComponent<PlayerController>().numOfTrashInBag <= 0)
+    //    {
+    //        for (int i = 0; i < DropOffList.Count; i++)
+    //        {
+    //            DropOffList[i].GetComponent<Renderer>().material = colors[0];
+    //        }
+    //    }
+    //}
 }

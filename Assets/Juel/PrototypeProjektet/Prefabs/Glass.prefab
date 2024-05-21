@@ -15,8 +15,10 @@ GameObject:
   - component: {fileID: 5089261965940085110}
   - component: {fileID: 316597075243359720}
   - component: {fileID: 1030799502570903950}
+  - component: {fileID: -8420642997862290981}
+  - component: {fileID: -40742683667338182}
   m_Layer: 0
-  m_Name: Trash
+  m_Name: Glass
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,16 +51,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5cda6f299db9464f9543a182d140665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
   colorList:
   - {fileID: 2100000, guid: c7964141db55fc14d9bbd656ef7cf085, type: 2}
   - {fileID: 2100000, guid: 947724d65cf76354792416b48fec5fc6, type: 2}
   - {fileID: 2100000, guid: 21ebbefeb2489fb44a9ec9a6320a3ff5, type: 2}
-  DropOff:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!33 &4418529902555702373
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -176,3 +172,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &-8420642997862290981
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354814300711289645}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.1, y: 1.1, z: 1.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-40742683667338182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354814300711289645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c722d3068155643b994a85ddddb688, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myTrash: 1
