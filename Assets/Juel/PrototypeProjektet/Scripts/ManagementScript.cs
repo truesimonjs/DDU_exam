@@ -5,7 +5,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class ManagementScript : MonoBehaviour
 {
-
+    public int lvl;
     public static ManagementScript instance;
     public List<GameObject> trashPrefabList;
     public List<GameObject> trashSpawnPosList;
@@ -14,8 +14,9 @@ public class ManagementScript : MonoBehaviour
 
 
     //public List<GameObject> DropOffList;
-    //public List<GameObject> trashList;
+    public List<GameObject> trashList;
     //public List<Material> colors;
+    
 
 
     [SerializeField] private float spawnDelayTime;
@@ -37,10 +38,15 @@ public class ManagementScript : MonoBehaviour
 
     IEnumerator spawnTrash()
     {
-        while (lvlComplete)
+        while (true)
         {
-            spawnTrashAction();
+            if (lvlComplete)
+            {
+                spawnTrashAction();
+                lvl++;
+            }
             yield return new WaitForSeconds(spawnDelayTime);
+        
         }   
     }
 
@@ -49,6 +55,7 @@ public class ManagementScript : MonoBehaviour
         foreach (GameObject obj in trashSpawnPosList)
         {
             GameObject newGO = Instantiate(trashPrefabList[Random.Range(0, trashPrefabList.Count)], trashSpawnPosList[0].transform.position, Quaternion.identity);
+            trashList.Add(newGO);
         }
             
         //rMaterial = newGO.GetComponent<Renderer>().material;
@@ -80,14 +87,18 @@ public class ManagementScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    //void Update()
-    //{
-    //    if (player.GetComponent<PlayerController>().numOfTrashInBag <= 0)
-    //    {
-    //        for (int i = 0; i < DropOffList.Count; i++)
-    //        {
-    //            DropOffList[i].GetComponent<Renderer>().material = colors[0];
-    //        }
-    //    }
-    //}
+    void Update()
+    {
+        if (trashList.Count > 0) lvlComplete = false;
+        else
+             lvlComplete = true;
+        
+        //if (player.GetComponent<PlayerController>().numOfTrashInBag <= 0)
+        //{
+        //    for (int i = 0; i < DropOffList.Count; i++)
+        //    {
+        //        DropOffList[i].GetComponent<Renderer>().material = colors[0];
+        //    }
+        //}
+    }
 }
