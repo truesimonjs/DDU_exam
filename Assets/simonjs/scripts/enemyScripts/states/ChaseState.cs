@@ -33,7 +33,7 @@ public class ChaseState : State
         {
             
             agent.SetDestination(player.position);
-         if (Vector3.Distance(transform.position, player.position) < 2) Debug.Log("player has been killed");
+            if (Vector3.Distance(transform.position, player.position) < 2) GameEnding.m_playerLose = true;
            
         } 
         else if (Vector3.Distance(transform.position,agent.destination)<agent.stoppingDistance)

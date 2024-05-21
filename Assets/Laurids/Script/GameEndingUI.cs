@@ -8,7 +8,7 @@ public class GameEnding : MonoBehaviour
     public float displayImageDuration = 1f;
     public CanvasGroup exitBackgroundImageCanvasGroup;
 
-    bool m_playerLose;
+    public static bool m_playerLose;
     float m_Timer;
 
     void Update()

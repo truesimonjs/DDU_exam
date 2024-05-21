@@ -19,5 +19,5 @@ public class TrashScript_SJS : MonoBehaviour
 }
 public enum TrashType
 {
-    Plastic,Glass
+    Plastic,Glass,NRG
 }
