@@ -5,23 +5,23 @@ public class DropOffAction : MonoBehaviour
 {
     [SerializeField] private List<Material> materials;
 
-    public bool ActiveDropOffLocation;
+    
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (ActiveDropOffLocation && collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerController>().HasTrash)
+        if (ManagementScript.instance.chosenOne == this.gameObject && collision.gameObject.tag == "Player" && collision.gameObject.GetComponent<PlayerController>().HasTrash)
         {
             collision.gameObject.GetComponent<PlayerController>().score += collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag;
             collision.gameObject.GetComponent<PlayerController>().numOfTrashInBag = 0;
             this.gameObject.GetComponent<Renderer>().material = materials[0];
-            ActiveDropOffLocation = false;
+            ManagementScript.instance.chosenOne = null;
             Debug.Log(message: "Trash was correctly disposed of");
         }
     }
 
     private void OnCollisionStay(Collision collision)
     {
-        if (!ActiveDropOffLocation && collision.gameObject.CompareTag("Player"))
+        if (!(ManagementScript.instance.chosenOne == this.gameObject) && collision.gameObject.CompareTag("Player"))
         {
             this.gameObject.GetComponent<Renderer>().material = materials[2];
         }
