@@ -6,8 +6,13 @@ public class TrashDump : MonoBehaviour
 {
     public TrashType dumpType = TrashType.Plastic;
     public static List<Transform> activeDumps = new List<Transform>();
+    public Color color;
     //debug
     public List<Transform> debugdumps;
+    private void Awake()
+    {
+        color = GetComponent<MeshRenderer>().material.color;
+    }
     private void Update()
     {
         debugdumps = activeDumps;
@@ -33,7 +38,7 @@ public class TrashDump : MonoBehaviour
     }
     public void BecomeActive(bool active)
     {
-        GetComponent<MeshRenderer>().material.color = active ? Color.green : Color.red;
+        GetComponent<MeshRenderer>().material.color = active ? Color.green : color;
         if (active)
         {
             activeDumps.Add(transform);

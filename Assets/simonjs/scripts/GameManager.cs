@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
             {
                 dump.BecomeActive(hasTrashType);
             }
-        
+       
            
         }
     }
