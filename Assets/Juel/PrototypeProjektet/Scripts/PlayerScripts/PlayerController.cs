@@ -50,10 +50,10 @@ public class PlayerController: MonoBehaviour
 
         CanPickUpTrash = BagSize > numOfTrashInBag;
 
-        if(HasTrash == false)
-        {
-            ManagementScript.instance.chosenOne = null;
-        }
+        //if(HasTrash == false)
+        //{
+        //    ManagementScript.instance.chosenOne = null;
+        //}
 
 
         //// Player movement

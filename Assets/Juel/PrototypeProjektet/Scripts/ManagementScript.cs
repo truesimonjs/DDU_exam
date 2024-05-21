@@ -9,17 +9,17 @@ public class ManagementScript : MonoBehaviour
     public static ManagementScript instance;
     public List<GameObject> trashPrefabList;
     public List<GameObject> trashSpawnPosList;
-    [SerializeField] private GameObject player;
-    public GameObject chosenOne;
+    //[SerializeField] private GameObject player;
+    //public GameObject chosenOne;
 
 
-    public List<GameObject> DropOffList;
-    public List<GameObject> trashList;
-    public List<Material> colors;
+    //public List<GameObject> DropOffList;
+    //public List<GameObject> trashList;
+    //public List<Material> colors;
 
 
     [SerializeField] private float spawnDelayTime;
-    [SerializeField] private bool simRunning;
+    [SerializeField] private bool lvlComplete;
 
     private void Awake()
     {
@@ -31,13 +31,13 @@ public class ManagementScript : MonoBehaviour
 
     private void Start()
     {
-        simRunning = true;
+        lvlComplete = true;
         StartCoroutine(spawnTrash());
     }
 
     IEnumerator spawnTrash()
     {
-        while (simRunning)
+        while (lvlComplete)
         {
             spawnTrashAction();
             yield return new WaitForSeconds(spawnDelayTime);
