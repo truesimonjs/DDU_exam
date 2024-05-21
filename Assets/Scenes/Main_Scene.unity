@@ -456,9 +456,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lvl: 0
   trashPrefabList:
-  - {fileID: 1489783406585123090, guid: 1f21af24d829e524aba906353745d45f, type: 3}
-  - {fileID: 6469143157458004915, guid: a7284737ae3311c4896b7af9e1ab2ba5, type: 3}
-  - {fileID: 919132149155446097, guid: b071f91a79ea4244eb6027b6afa10c1b, type: 3}
+  - {fileID: 8164884729831161276, guid: 3f71a63ffc28e0f4e82da4bb84e488ed, type: 3}
+  - {fileID: 794166498710832791, guid: ac43108a93ee9db49a2c49fb630752f4, type: 3}
+  - {fileID: 5741993426871466806, guid: 56477e2fea0777146a0c7fd0316b1f93, type: 3}
   trashSpawnPosList:
   - {fileID: 479206897}
   - {fileID: 2143059291}
@@ -665,7 +665,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1792836069432539246, guid: 45a7b94a354ad8f4a8624123a656e1b0, type: 3}
       propertyPath: speed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1792836069432539246, guid: 45a7b94a354ad8f4a8624123a656e1b0, type: 3}
       propertyPath: jumpPower
@@ -685,7 +685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3526394858981086925, guid: 45a7b94a354ad8f4a8624123a656e1b0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.4
+      value: 27.7
       objectReference: {fileID: 0}
     - target: {fileID: 3526394858981086925, guid: 45a7b94a354ad8f4a8624123a656e1b0, type: 3}
       propertyPath: m_LocalRotation.w

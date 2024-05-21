@@ -52,10 +52,10 @@ public class ManagementScript : MonoBehaviour
 
     void spawnTrashAction()
     {
-        foreach (GameObject obj in trashSpawnPosList)
+        foreach (GameObject spawnPoint in trashSpawnPosList)
         {
-            int spawnPoint = Random.Range(0, trashSpawnPosList.Count);
-            GameObject newGO = Instantiate(trashPrefabList[Random.Range(0, trashPrefabList.Count)], trashSpawnPosList[spawnPoint].transform.position, Quaternion.identity);
+            
+            GameObject newGO = Instantiate(trashPrefabList[Random.Range(0, trashPrefabList.Count)], spawnPoint.transform.position, Quaternion.identity);
             trashList.Add(newGO);
         }
             
