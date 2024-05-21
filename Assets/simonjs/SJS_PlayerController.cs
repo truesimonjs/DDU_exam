@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 public class SJS_PlayerController : MonoBehaviour,IPickTrash
 {
+    public static SJS_PlayerController instance;
     public List<TrashType> backPack;
     public int trashLimit;
     //movement stats
@@ -18,6 +19,10 @@ public class SJS_PlayerController : MonoBehaviour,IPickTrash
 
     private bool grounded;
     float camXRotation = 0;
+    private void Awake()
+    {
+        instance = this;
+    }
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -26,9 +31,9 @@ public class SJS_PlayerController : MonoBehaviour,IPickTrash
 
     private void Update()
     {
-        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * mouseSens, Space.Self);
+        transform.Rotate(Vector3.up, Input.GetAxis("Mouse X") * mouseSens*Time.deltaTime, Space.Self);
         //move camera up and down 
-        camXRotation += -mouseSens * Input.GetAxis("Mouse Y");
+        camXRotation += -mouseSens*Time.deltaTime * Input.GetAxis("Mouse Y");
         camXRotation = Mathf.Clamp(camXRotation, -90, 90);
         cam.localRotation = Quaternion.Euler(camXRotation, cam.localEulerAngles.y, cam.localEulerAngles.z);
         //move wasd
@@ -55,4 +60,6 @@ public class SJS_PlayerController : MonoBehaviour,IPickTrash
         }
         return false;
     }
+
+  
 }

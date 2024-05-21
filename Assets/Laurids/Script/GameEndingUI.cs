@@ -2,12 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class GameEnding : MonoBehaviour
 {
+    //inspector
     public float fadeDuration = 1f;
     public float displayImageDuration = 1f;
+    //ref
     public CanvasGroup exitBackgroundImageCanvasGroup;
     public TextMeshProUGUI scoreText;
+    public GameObject pauseScreen;
+    public TMP_InputField sensField;
+    //
     public static bool m_playerLose;
     float m_Timer;
 
@@ -17,6 +23,14 @@ public class GameEnding : MonoBehaviour
         {
             EndLevel();
             scoreText.text = "Score: " + GameManager.instance.score;
+        }
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+
+            pauseScreen.SetActive(!pauseScreen.activeSelf);
+            bool gamePaused = pauseScreen.activeSelf;
+            Time.timeScale = gamePaused? 0 : 1;
+            Cursor.lockState = gamePaused ? CursorLockMode.None : CursorLockMode.Locked;
         }
     }
 
@@ -28,7 +42,26 @@ public class GameEnding : MonoBehaviour
 
         if (m_Timer > fadeDuration + displayImageDuration)
         {
-            Application.Quit();
+            //Application.Quit();
+            Time.timeScale = 0;
+            pauseScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+
         }
+    }
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Time.timeScale = 1;
+    }
+    public void ChangeSpeed () 
+    {
+        SJS_PlayerController Control = SJS_PlayerController.instance;
+        Control.speed = Control.speed == 15 ? 5 : 15;
+
+    }
+    public void changeSensitivity()
+    {
+        SJS_PlayerController.instance.mouseSens = float.Parse(sensField.text);
     }
 }

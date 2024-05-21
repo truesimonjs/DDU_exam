@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Juel/PrototypeProjektet/Scenes/Prototype1.unity
     guid: 9ed0581577932ee428f18ecc7cbb9538
+  - enabled: 1
+    path: Assets/Scenes/Main_Scene.unity
+    guid: 22b03c5af55b4744a832f2d04743ed78
   m_configObjects: {}
