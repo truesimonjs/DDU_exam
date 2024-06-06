@@ -16,7 +16,10 @@ public class GameEnding : MonoBehaviour
     //
     public static bool m_playerLose;
     float m_Timer;
-
+    private void Awake()
+    {
+        m_playerLose = false;
+    }
     void Update()
     {
         if (m_playerLose)
@@ -51,6 +54,7 @@ public class GameEnding : MonoBehaviour
     }
     public void RestartGame()
     {
+        m_playerLose = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Time.timeScale = 1;
     }
