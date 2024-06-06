@@ -13,6 +13,7 @@ public class GameEnding : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public GameObject pauseScreen;
     public TMP_InputField sensField;
+    public TextMeshProUGUI currentScoreText;
     //
     public static bool m_playerLose;
     float m_Timer;
@@ -22,6 +23,7 @@ public class GameEnding : MonoBehaviour
     }
     void Update()
     {
+        currentScoreText.text = "score: " + GameManager.instance.score;
         if (m_playerLose)
         {
             EndLevel();
@@ -42,7 +44,7 @@ public class GameEnding : MonoBehaviour
         m_Timer += Time.deltaTime;
 
         exitBackgroundImageCanvasGroup.alpha = m_Timer / fadeDuration;
-
+        currentScoreText.gameObject.SetActive(false);
         if (m_Timer > fadeDuration + displayImageDuration)
         {
             //Application.Quit();
